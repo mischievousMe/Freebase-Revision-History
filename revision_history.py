@@ -18,8 +18,10 @@ from selenium.webdriver.common.by import By
 
 browser  = webdriver.Chrome()
 
-api_key ='AIzaSyCj0ZvxQbOOoQPOB8EYb-3GeLCxlZLEL7o'
-
+f = open('api_key.txt','r')
+fr = f.readlines();
+api_key = fr[0]
+f.close()
 print "Enter the MID of the Freebase topic whose Revision History is required:  "
 mid = raw_input()
 print "Enter the name of the Freebase topic: "
@@ -33,7 +35,7 @@ time.sleep(1)
 elem = browser.find_element_by_tag_name("body")
 
 #to dynamically load all the content of the table
-no_of_pagedowns = 100
+no_of_pagedowns = 1000
 while no_of_pagedowns:
     elem.send_keys(Keys.PAGE_DOWN)
     time.sleep(0.2)
@@ -46,7 +48,7 @@ s = ""
 
 cnt = 0
 
-filename = 'RevisionHistoryOf_'+name+'.csv'
+filename = '/Users/shalini/Desktop/Freebase Revision History/RevisionHistoryOf_'+name+'.csv'
 
 f = open(filename,'w')
 
